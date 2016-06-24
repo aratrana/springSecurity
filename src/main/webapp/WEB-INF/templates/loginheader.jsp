@@ -1,0 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <div class="jumbotron">
+	<img alt="" src="<c:url value="/static/resources/images/family.jpg"/>" width="150" style="padding-top:10px;">
+</div> --%>

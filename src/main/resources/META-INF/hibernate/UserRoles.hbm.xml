@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 16, 2015 1:57:30 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.arat.budget.model.UserRoles" table="user_roles" catalog="budget_db">
+        <id name="userRoleId" type="java.lang.Integer">
+            <column name="user_role_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="com.arat.budget.model.Users" fetch="select">
+            <column name="username" length="45" not-null="true" />
+        </many-to-one>
+        <property name="role" type="string">
+            <column name="ROLE" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

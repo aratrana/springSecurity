@@ -1,0 +1,47 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	 http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	 http://www.springframework.org/schema/mvc
+	 http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<bean id="contextHelper" class="com.arat.budget.utils.SpringContextHelper" />
+	<bean id="hb_db_SessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="hb_db_Datasource" />
+		<property name="mappingResources">
+			<list>
+				<value>/hibernate/User.hbm.xml</value>
+				<value>/hibernate/Budget.hbm.xml</value>
+				<value>/hibernate/UserRoles.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				connection.pool_size=1
+				current_session_context_class=thread
+				#hibernate.transaction.factory_clas=org.hibernate.transaction.JTATransactionFactory
+				#hibernate.transaction.manager_lookup_class=org.hibernate.transaction.JBossTransactionManagerLookup
+				cache.provider_class=org.hibernate.cache.NoCacheProvider
+				show_sql=true
+				format_sql=true
+				use_sql_comments=true
+				hibernate.jdbc.batch_size=20
+				hibernate.cache.use_second_level_cache=false
+			</value>
+		</property>
+	</bean>
+
+	<bean id="hbDao" class="com.arat.budget.dao.StatefullSessionHibernateDao">
+		<property name="sessionFactory" ref="hb_db_SessionFactory" />
+	</bean>
+	<bean id="hbUserDetailService" class="com.arat.budget.service.HbUserDetailService">
+		<property name="userDaoImpl" ref="userDaoImpl" />
+	</bean>
+</beans>

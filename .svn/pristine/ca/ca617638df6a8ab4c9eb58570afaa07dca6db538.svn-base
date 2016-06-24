@@ -1,0 +1,44 @@
+package com.arat.budget.utils;
+
+import java.io.ByteArrayOutputStream;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+public class Writer {
+	public static void write(HttpServletResponse response, ByteArrayOutputStream bao) {
+		try {
+			   // Retrieve the output stream
+			   ServletOutputStream outputStream = response.getOutputStream();
+			   // Write to the output stream
+			   bao.writeTo(outputStream);
+			   // Flush the stream
+			   outputStream.flush();
+			   // Close the stream
+			   outputStream.close();
+			 
+			  } catch (Exception e) {
+				  e.printStackTrace();
+			  }
+	}
+	
+	/**
+	  * Writes the report to the output stream
+	  */
+	 public static void write(HttpServletResponse response, byte[] byteArray) {
+	   
+	  try {
+	   // Retrieve the output stream
+	   ServletOutputStream outputStream = response.getOutputStream();
+	   // Write to the output stream
+	   outputStream.write(byteArray);
+	   // Flush the stream
+	   outputStream.flush();
+	   // Close the stream
+	   outputStream.close();
+	    
+	  } catch (Exception e) {
+		  e.printStackTrace();
+	  }
+	 } 
+}
